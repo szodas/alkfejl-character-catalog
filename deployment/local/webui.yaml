@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: balkfet-webui-local
-  namespace: balkfet-local
+  name: character-catalog-webui-local
+  namespace: character-catalog-local
   labels:
-    app: balkfet-webui-local
+    app: character-catalog-webui-local
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: balkfet-webui-local
+      app: character-catalog-webui-local
   template:
     metadata:
       labels:
-        app: balkfet-webui-local
+        app: character-catalog-webui-local
     spec:
       containers:
-      - name: balkfet-webui
+      - name: character-catalog-webui
         image: balkfet-webui:latest
         imagePullPolicy: Never
         ports:
@@ -25,11 +25,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: balkfet-webui-local
-  namespace: balkfet-local
+  name: character-catalog-webui-local
+  namespace: character-catalog-local
 spec:
   selector:
-    app: balkfet-webui-local
+    app: character-catalog-webui-local
   ports:
     - protocol: TCP
       port: 8000

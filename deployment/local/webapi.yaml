@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: balkfet-webapi-local
-  namespace: balkfet-local
+  name: character-catalog-webapi-local
+  namespace: character-catalog-local
   labels:
-    app: balkfet-webapi-local
+    app: character-catalog-webapi-local
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: balkfet-webapi-local
+      app: character-catalog-webapi-local
   template:
     metadata:
       labels:
-        app: balkfet-webapi-local
+        app: character-catalog-webapi-local
     spec:
       containers:
-        - name: balkfet-webapi
+        - name: character-catalog-webapi
           image: balkfet-webapi:latest
           imagePullPolicy: Never
           env:
             - name: MongoDb__ConneX
               valueFrom:
                 secretKeyRef:
-                  name: balkfet-secrets-local
+                  name: character-catalog-secrets-local
                   key: mongodb-url
           ports:
             - containerPort: 5000
@@ -31,11 +31,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: balkfet-webapi-local
-  namespace: balkfet-local
+  name: character-catalog-webapi-local
+  namespace: character-catalog-local
 spec:
   selector:
-    app: balkfet-webapi-local
+    app: character-catalog-webapi-local
   ports:
     - protocol: TCP
       port: 8001
