@@ -19,7 +19,7 @@ export class HeroService {
   apiUrl = environment.apiUrl;
 
   getHero(id: number): Observable<Hero> {
-    const url = `${this.apiUrl}/hero/${id}`;
+    const url = `${this.apiUrl}/character/${id}`;
     return this.http.get<Hero>(url).pipe(
       tap(hero => this.messageService.add(`HeroService: fetched hero with id=${hero.id}`)),
       catchError(this.handleError)
@@ -27,7 +27,7 @@ export class HeroService {
   }
 
   getHeroes(): Observable<Hero[]> {
-    const url = `${this.apiUrl}/hero`;
+    const url = `${this.apiUrl}/character`;
     return this.http.get<Hero[]>(url).pipe(
       tap(heroes => this.messageService.add(`HeroService: fetched ${heroes.length} heroes`)),
       catchError(this.handleError)
@@ -35,7 +35,7 @@ export class HeroService {
   }
 
   createHero(hero: Hero): Observable<Hero> {
-    const url = `${this.apiUrl}/hero`;
+    const url = `${this.apiUrl}/character`;
     return this.http.post<Hero>(url, hero).pipe(
       tap(heroe => this.messageService.add(`HeroService: created hero with name=${heroe.name}`)),
       catchError(this.handleError)
@@ -43,7 +43,7 @@ export class HeroService {
   }
 
   updateHero(hero: Hero): Observable<UpdateResponse> {
-    const url = `${this.apiUrl}/hero/${hero.id}`;
+    const url = `${this.apiUrl}/character/${hero.id}`;
     return this.http.put<UpdateResponse>(url, hero).pipe(
       tap(res => {
         if (res.updated) {
@@ -58,7 +58,7 @@ export class HeroService {
   }
 
   deleteHero(id: string): Observable<void> {
-    const url = `${this.apiUrl}/hero/${id}`;
+    const url = `${this.apiUrl}/character/${id}`;
     return this.http.delete<{ id: number; deleted: boolean }>(url).pipe(
       map(res => {
         if (res.deleted) {

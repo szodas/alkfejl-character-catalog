@@ -42,8 +42,8 @@ public static class AppConfiguration
     public static IServiceCollection AddDomainServices(this IServiceCollection services)
     {
         services.AddSingleton<IMongoDbConnectionFactory, MongoDbConnectionFactory>();
-        services.AddScoped<IHeroRepository, HeroRepository>();
-        services.AddScoped<IMcpHeroRepository, McpHeroRepository>();
+        services.AddScoped<ICharacterRepository, CharacterRepository>();
+        services.AddScoped<IMcpCharacterRepository, McpCharacterRepository>();
 
         return services;
     }

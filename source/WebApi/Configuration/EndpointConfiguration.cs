@@ -15,7 +15,7 @@ public static class EndpointConfiguration
 
         var config = routes.ServiceProvider.GetRequiredService<IConfiguration>();
        // routes.MapMcp("/mcp").AddEndpointFilter(new McpAuthFilter(config));
-        routes.MapGroup("/hero").MapHeroEndpoints();
+        routes.MapGroup("/character").MapCharacterEndpoints();
 
         return routes;
     }

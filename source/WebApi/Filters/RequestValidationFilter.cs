@@ -6,16 +6,15 @@ public class RequestValidationFilter : IEndpointFilter
 {
     public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
     {
-        // REQUEST INTERCEPTION
-        // Validate request before calling any handlers
-        Hero hero = context.Arguments.OfType<Hero>().Single();
-        if (hero.Id == Guid.Empty ||
-            string.IsNullOrWhiteSpace(hero.Name)) return Results.BadRequest("Incorrect hero data.");
+        Character character = context.Arguments.OfType<Character>().Single();
 
-        // If validation passes, call the next handler(s)
+        if (character.Id == Guid.Empty ||
+            string.IsNullOrWhiteSpace(character.Name))
+        {
+            return Results.BadRequest("Incorrect character data.");
+        }
+
         object? result = await next(context);
-        // RESPONSE INTERCEPTION
-        // After the next handler(s) returned, we could even modify the response before it goes back to the client
         return result;
     }
 }

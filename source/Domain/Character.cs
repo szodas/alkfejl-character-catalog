@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Domain;
 
-public record Hero
+public record Character
 {
     [BsonGuidRepresentation(GuidRepresentation.Standard)]
     public required Guid Id { get; init; }
