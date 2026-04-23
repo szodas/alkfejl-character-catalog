@@ -8,7 +8,7 @@ COPY HeroBackend.slnx ./
 # Restore as distinct layers
 RUN dotnet restore HeroBackend.slnx
 # Build and publish a release
-RUN dotnet publish -o out
+RUN dotnet publish WebApi/WebApi.csproj -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:52dcfb4225fda614c38ba5997a4ec72cbd5260a624125174416e547ff9eb9b8c
