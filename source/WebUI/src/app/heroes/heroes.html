@@ -1,4 +1,4 @@
-<h2>My Heroes</h2>
+<h2>My Characters</h2>
 <ol class="list-group list-group-numbered">
     @for (hero of heroes(); track hero.id; let e = $even) {
     <li [ngClass]="hero === selectedHero() ? 'list-group-item list-group-item-primary' : (e ? 'list-group-item list-group-item' : 'list-group-item-secondary list-group-item')"
