@@ -14,14 +14,16 @@ export class HeroService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService
-  ) { }
+  ) {}
 
   apiUrl = environment.apiUrl;
 
-  getHero(id: number): Observable<Hero> {
+  getHero(id: string): Observable<Hero> {
     const url = `${this.apiUrl}/character/${id}`;
     return this.http.get<Hero>(url).pipe(
-      tap(hero => this.messageService.add(`HeroService: fetched hero with id=${hero.id}`)),
+      tap(character =>
+        this.messageService.add(`CharacterService: fetched character with id=${character.id}`)
+      ),
       catchError(this.handleError)
     );
   }
@@ -29,7 +31,9 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     const url = `${this.apiUrl}/character`;
     return this.http.get<Hero[]>(url).pipe(
-      tap(heroes => this.messageService.add(`HeroService: fetched ${heroes.length} heroes`)),
+      tap(characters =>
+        this.messageService.add(`CharacterService: fetched ${characters.length} characters`)
+      ),
       catchError(this.handleError)
     );
   }
@@ -37,7 +41,9 @@ export class HeroService {
   createHero(hero: Hero): Observable<Hero> {
     const url = `${this.apiUrl}/character`;
     return this.http.post<Hero>(url, hero).pipe(
-      tap(heroe => this.messageService.add(`HeroService: created hero with name=${heroe.name}`)),
+      tap(character =>
+        this.messageService.add(`CharacterService: created character with name=${character.name}`)
+      ),
       catchError(this.handleError)
     );
   }
@@ -47,9 +53,9 @@ export class HeroService {
     return this.http.put<UpdateResponse>(url, hero).pipe(
       tap(res => {
         if (res.updated) {
-          this.messageService.add(`HeroService: updated hero with id=${hero.id}`);
+          this.messageService.add(`CharacterService: updated character with id=${hero.id}`);
         } else {
-          this.messageService.add(`HeroService: hero with id=${hero.id} not updated`);
+          this.messageService.add(`CharacterService: character with id=${hero.id} not updated`);
         }
         return res;
       }),
@@ -59,30 +65,27 @@ export class HeroService {
 
   deleteHero(id: string): Observable<void> {
     const url = `${this.apiUrl}/character/${id}`;
-    return this.http.delete<{ id: number; deleted: boolean }>(url).pipe(
+    return this.http.delete<{ id: string; deleted: boolean }>(url).pipe(
       map(res => {
         if (res.deleted) {
-          this.messageService.add(`HeroService: deleted hero with id=${id}`);
+          this.messageService.add(`CharacterService: deleted character with id=${id}`);
         } else {
-          this.messageService.add(`HeroService: hero with id=${id} not found`);
+          this.messageService.add(`CharacterService: character with id=${id} not found`);
         }
         return;
-      })
+      }),
+      catchError(this.handleError)
     );
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
-    // Production apps should also send the error to some remote logging infrastructure
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {
-      // Client side or network related error
       errorMessage = `An error occurred: ${err.error.message}`;
     } else {
-      // Backend responed with an unsuccessful response code.
       errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
     }
     console.error(errorMessage);
     return throwError(() => errorMessage);
   }
-
 }

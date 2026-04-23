@@ -6,7 +6,7 @@ Az alkalmazás egy egyszerű karakter-nyilvántartó rendszer, amely lehetővé 
 
 ## Elérhető funkciók
 
-### 1. Hero List
+### 1. Character List
 A kezdőoldalon megjelenik a rendszerben tárolt karakterek listája.
 
 Itt a felhasználó:
@@ -14,11 +14,11 @@ Itt a felhasználó:
 - kiválaszthat egy karaktert,
 - törölhet egy karaktert.
 
-### 2. Hero Creator
+### 2. Character Creator
 A létrehozó oldalon új karakter vehető fel.
 
 Lépések:
-1. Nyisd meg a **Hero Creator** oldalt.
+1. Nyisd meg a **Character Creator** oldalt.
 2. Add meg a karakter nevét.
 3. Mentsd el az új elemet.
 4. A karakter ezután megjelenik a listában.
