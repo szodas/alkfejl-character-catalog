@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: character-catalog-webapi
-          image: ghcr.io/milannemeth/gde_b-alkfet/balkfet-webapi:latest
+          image: ghcr.io/szodas/alkfejl-character-catalog/character-catalog-webapi:latest
           imagePullPolicy: Always
           env:
             - name: MongoDb__ConneX
