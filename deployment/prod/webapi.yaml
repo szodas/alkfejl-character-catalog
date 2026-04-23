@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: balkfet-webapi-prod
-  namespace: balkfet-prod
+  name: character-catalog-webapi-prod
+  namespace: character-catalog-prod
   labels:
-    app: balkfet-webapi-prod
+    app: character-catalog-webapi-prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: balkfet-webapi-prod
+      app: character-catalog-webapi-prod
   template:
     metadata:
       labels:
-        app: balkfet-webapi-prod
+        app: character-catalog-webapi-prod
     spec:
       containers:
-        - name: balkfet-webapi
+        - name: character-catalog-webapi
           image: ghcr.io/milannemeth/gde_b-alkfet/balkfet-webapi:latest
           imagePullPolicy: Always
           env:
             - name: MongoDb__ConneX
               valueFrom:
                 secretKeyRef:
-                  name: balkfet-secrets-prod
+                  name: character-catalog-secrets-prod
                   key: mongodb-url
           ports:
             - containerPort: 5000
@@ -31,11 +31,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: balkfet-webapi-prod
-  namespace: balkfet-prod
+  name: character-catalog-webapi-prod
+  namespace: character-catalog-prod
 spec:
   selector:
-    app: balkfet-webapi-prod
+    app: character-catalog-webapi-prod
   ports:
     - protocol: TCP
       port: 5000

@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: balkfet-webui-prod
-  namespace: balkfet-prod
+  name: character-catalog-webui-prod
+  namespace: character-catalog-prod
   labels:
-    app: balkfet-webui-prod
+    app: character-catalog-webui-prod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: balkfet-webui-prod
+      app: character-catalog-webui-prod
   template:
     metadata:
       labels:
-        app: balkfet-webui-prod
+        app: character-catalog-webui-prod
     spec:
       containers:
-      - name: balkfet-webui
+      - name: character-catalog-webui
         image: ghcr.io/milannemeth/gde_b-alkfet/balkfet-webui:latest
         imagePullPolicy: Always
         ports:
@@ -25,11 +25,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: balkfet-webui-prod
-  namespace: balkfet-prod
+  name: character-catalog-webui-prod
+  namespace: character-catalog-prod
 spec:
   selector:
-    app: balkfet-webui-prod
+    app: character-catalog-webui-prod
   ports:
     - protocol: TCP
       port: 80
