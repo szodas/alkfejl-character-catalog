@@ -32,9 +32,11 @@ A rendszerben tárolt entitás főbb adatai:
 ## 4. Nem funkcionális követelmények
 
 - a frontend és a backend külön komponens legyen
-- a komponensek konténerizálhatók legyenek
+- a komponensek Docker konténerként buildelhetők legyenek
 - a rendszer dokumentáltan futtatható legyen
-- a Docker image-ek buildelhetők és publikálhatók legyenek
+- a frontend és backend Docker image-ei GitHub Actions CI workflow segítségével automatikusan buildelhetők legyenek
+- az elkészült Docker image-ek GitHub Container Registry-be (GHCR) publikálhatók legyenek
+- a rendszer lokális fejlesztői környezetben stabilan futtatható legyen
 
 ## 5. Technológiák
 
