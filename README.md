@@ -31,6 +31,16 @@ Az alkalmazás egy egyszerű karakter-nyilvántartó rendszert valósít meg, ah
 - Karakter módosítása
 - Karakter törlése
 
+## CI folyamat
+
+A projekt GitHub Actions workflow-kat használ a konténerképek automatikus buildelésére és publikálására.
+
+A workflow-k feladatai:
+- a backend komponens Docker image-ének buildelése (`character-catalog-webapi`)
+- a frontend komponens Docker image-ének buildelése (`character-catalog-webui`)
+- az elkészült image-ek feltöltése a GitHub Container Registry-be (GHCR)
+
+A létrejövő image-ek a saját GitHub repository-hoz tartozó csomagokként érhetők el.
 ## Állapot
 
 A projekt fejlesztés alatt áll.
