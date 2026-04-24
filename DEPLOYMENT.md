@@ -22,6 +22,14 @@ cd source/WebUI
 npm install
 npm start
 
+2/b. Backend futtatása Docker konténerből
+
+```bash
+docker run --rm -p 5001:5000 -e MongoDb__ConneX="mongodb://host.docker.internal:27017" -e MongoDb__Database="CharacterCatalogDb" character-catalog-webapi:latest
+
+A konténeres backend ezután ezen a címen érhető el:
+http://localhost:5001/character
+
 A frontend általában az alábbi címen érhető el:
 
 http://localhost:4200
