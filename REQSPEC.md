@@ -4,7 +4,7 @@
 
 A projekt célja egy olyan automatizált, end-to-end megoldás megvalósítása, amely a fejlesztéstől a telepítésig lefedi egy egyszerű webalkalmazás teljes életciklusát.
 
-A rendszer egy egyszerű domain modellre épülő nyilvántartó alkalmazás, amely frontend, backend és adatbázis komponensekből áll.
+A rendszer egy egyszerű domain modellre épülő nyilvántartó alkalmazás, amely frontendből, több backend komponensből és adatbázisból áll.
 
 ## 2. Választott domain modell
 
@@ -23,7 +23,9 @@ A rendszerben tárolt entitás főbb adatai:
 - karakter törlése
 
 ### Backend
-- REST API biztosítása CRUD műveletekhez
+- fő CRUD REST API biztosítása
+- külön lekérdező backend komponens biztosítása
+- külön MCP-szerű backend komponens biztosítása
 - MongoDB adatkapcsolat biztosítása
 
 ### Adatbázis
@@ -31,7 +33,8 @@ A rendszerben tárolt entitás főbb adatai:
 
 ## 4. Nem funkcionális követelmények
 
-- a frontend és a backend külön komponens legyen
+- a frontend és a backend külön komponensekből álljon
+- a backend több szolgáltatásra bontva is futtatható legyen
 - a komponensek Docker konténerként buildelhetők legyenek
 - a rendszer dokumentáltan futtatható legyen
 - a frontend és backend Docker image-ei GitHub Actions CI workflow segítségével automatikusan buildelhetők legyenek
@@ -47,7 +50,16 @@ A rendszerben tárolt entitás főbb adatai:
 - GitHub Actions
 - Kubernetes
 
-## 6. Dokumentáció
+## 6. Architektúra
+
+A rendszer fő komponensei:
+- WebUI
+- WebApi
+- CharacterQueryApi
+- CharacterMcpServer
+- MongoDB
+
+## 7. Dokumentáció
 
 A projekthez az alábbi dokumentációk készülnek:
 - README
